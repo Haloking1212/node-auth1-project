@@ -4,7 +4,7 @@ const bcrypt = require('bcryptjs');
 
 module.exports = (req, res, next) => {
     // look for the credentials
-    const { username, password } = req.body
+    const { username, password } = req.headers
 
     if (!(username && password)) {
         res.status(401).json({ message: 'You Shall Not Pass!' });
@@ -14,7 +14,6 @@ module.exports = (req, res, next) => {
             .first()
             .then(_user => {
                 if (_user && bcrypt.compareSync(password, _user.password)) {
-                    res.status(200).json({ message: 'Logged in' })
                     next()
                 } else {
                     res.status(401).json({ messege: 'You Shall Not Pass!' })
