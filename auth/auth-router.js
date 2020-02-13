@@ -24,8 +24,8 @@ router.post('/register', (req, res) => {
 });
 
 router.post('/login', authorize, (req, res) => {
-  let { username } = req.headers;
-  res.status(200).json({ message: `Welcome ${username}!` });
+  // let { username } = req.body;
+  res.status(200).json();
 })
 
 

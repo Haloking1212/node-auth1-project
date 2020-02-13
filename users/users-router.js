@@ -11,4 +11,14 @@ router.get('/', authrequired, (req, res) => {
     .catch(err => res.send(err));
 });
 
+router.get('/users', (req, res) => {
+  Users.find()
+  .then(users => {
+      res.json(users)
+  })
+  .catch(err => {
+      res.status(500).json({ message: 'Failed to get users' })
+  })
+})
+
 module.exports = router;
